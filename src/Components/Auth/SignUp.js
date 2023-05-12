@@ -1,59 +1,14 @@
-import "./AuthForm.css";
+import "./SignUp.css";
 import React from "react";
-import { useRef, useState, useContext } from "react";
+import { useRef, useContext } from "react";
 import AuthContext from "../../Store/auth-context";
+import { NavLink } from "react-router-dom";
 
-const AuthForm = () => {
+const SignUp = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
   const authCtx = useContext(AuthContext);
-
-  const loginHandler = (event) => {
-    event.preventDefault();
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-    const enteredConfirmPassword = confirmPasswordInputRef.current.value;
-    fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCY-VGJzQO4PuIAWLAzUqOd4c2XvpMOQFs",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: enteredEmail,
-          password: enteredPassword,
-          returnSecureToken: true,
-        }),
-        header: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then(async (res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          const data = await res.json();
-          console.log(data);
-          if (data.error.message) {
-            alert(data.error.message);
-          }
-        }
-      })
-      .then((data) => {
-        console.log(data);
-        if (data.idToken) {
-          // console.log(data.idToken);
-          authCtx.logIn(data.idToken, enteredEmail);
-          // history.replace('/')
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        alert(err);
-      });
-
-    // console.log(enteredEmail, enteredPassword)
-  };
 
   const signupHandler = (event) => {
     event.preventDefault();
@@ -78,7 +33,7 @@ const AuthForm = () => {
       ).then((res) => {
         //   setIsLoading(false);
         if (res.ok) {
-            console.log('Sign Up Successful')
+          console.log("Sign Up Successful");
         } else {
           return res.json().then((data) => {
             console.log(data);
@@ -89,7 +44,7 @@ const AuthForm = () => {
         }
       });
     } else {
-        alert('Password does not match')
+      alert("Password does not match");
     }
   };
 
@@ -125,11 +80,14 @@ const AuthForm = () => {
       </form>
       <div class="form-section">
         <p>
-          Have an account? <a href="">Log in</a>{" "}
+          Have an account?{" "}
+          <NavLink activeClassName="active" className="link" to="/login">
+            <>Log In</>
+          </NavLink>
         </p>
       </div>
     </div>
   );
 };
 
-export default AuthForm;
+export default SignUp;
