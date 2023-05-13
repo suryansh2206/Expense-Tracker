@@ -41,7 +41,7 @@ const Login = () => {
         console.log(data);
         if (data.idToken) {
           console.log(data.idToken);
-          authCtx.logIn(data.idToken, enteredEmail);//not working from here most probably
+          authCtx.logIn(data.idToken, enteredEmail); //not working from here most probably
           // history.replace('/')
         }
       })
@@ -50,37 +50,39 @@ const Login = () => {
         alert(err);
       });
 
-    console.log('Successfully Logged In')
+    console.log("Successfully Logged In");
   };
   return (
-    <div class="form-box">
-      <form class="form">
-        <span class="title">Log In</span>
-        <div class="form-container">
-          <input
-            type="email"
-            class="input"
-            placeholder="Email"
-            required
-            ref={emailInputRef}
-          />
-          <input
-            type="password"
-            class="input"
-            placeholder="Password"
-            required
-            ref={passwordInputRef}
-          />
+    <div class="container">
+      <div class="form-box">
+        <form class="form">
+          <span class="title">Log In</span>
+          <div class="form-container">
+            <input
+              type="email"
+              class="input"
+              placeholder="Email"
+              required
+              ref={emailInputRef}
+            />
+            <input
+              type="password"
+              class="input"
+              placeholder="Password"
+              required
+              ref={passwordInputRef}
+            />
+          </div>
+          <button onClick={loginHandler}>Log In</button>
+        </form>
+        <div class="form-section">
+          <p>
+            Don't have an account?{" "}
+            <NavLink activeClassName="active" className="link" to="/signup">
+              <>Sign up</>
+            </NavLink>
+          </p>
         </div>
-        <button onClick={loginHandler}>Log In</button>
-      </form>
-      <div class="form-section">
-        <p>
-          Don't have an account?{" "}
-          <NavLink activeClassName="active" className="link" to="/signup">
-            <>Sign up</>
-          </NavLink>
-        </p>
       </div>
     </div>
   );

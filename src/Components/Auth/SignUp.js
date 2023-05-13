@@ -49,42 +49,44 @@ const SignUp = () => {
   };
 
   return (
-    <div class="form-box">
-      <form class="form">
-        <span class="title">Sign up</span>
-        <span class="subtitle">Create a free account with your email.</span>
-        <div class="form-container">
-          <input
-            type="email"
-            class="input"
-            placeholder="Email"
-            required
-            ref={emailInputRef}
-          />
-          <input
-            type="password"
-            class="input"
-            placeholder="Password"
-            required
-            ref={passwordInputRef}
-          />
-          <input
-            type="password"
-            class="input"
-            placeholder="Confirm Password"
-            required
-            ref={confirmPasswordInputRef}
-          />
+    <div class="container">
+      <div class="form-box">
+        <form class="form">
+          <span class="title">Sign up</span>
+          <span class="subtitle">Create a free account with your email.</span>
+          <div class="form-container">
+            <input
+              type="email"
+              class="input"
+              placeholder="Email"
+              required
+              ref={emailInputRef}
+            />
+            <input
+              type="password"
+              class="input"
+              placeholder="Password"
+              required
+              ref={passwordInputRef}
+            />
+            <input
+              type="password"
+              class="input"
+              placeholder="Confirm Password"
+              required
+              ref={confirmPasswordInputRef}
+            />
+          </div>
+          <button onClick={signupHandler}>Sign up</button>
+        </form>
+        <div class="form-section">
+          <p>
+            Have an account?{" "}
+            <NavLink activeClassName="active" className="link" to="/login">
+              <>Log In</>
+            </NavLink>
+          </p>
         </div>
-        <button onClick={signupHandler}>Sign up</button>
-      </form>
-      <div class="form-section">
-        <p>
-          Have an account?{" "}
-          <NavLink activeClassName="active" className="link" to="/login">
-            <>Log In</>
-          </NavLink>
-        </p>
       </div>
     </div>
   );

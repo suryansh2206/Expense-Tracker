@@ -1,3 +1,10 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* adjust this to set the height of the container */
+}
+
 .form-box {
     max-width: 300px;
     background: #f1f7fe;

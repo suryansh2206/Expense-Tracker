@@ -10,16 +10,12 @@ import Welcome from "./Components/Pages/Welcome";
 function App() {
   const authCtx = useContext(AuthContext);
   return (
-    <div className="App">
-      <div className="App-header">
         <Routes>
           {!authCtx.isLoggedIn && <Route path="/login" element={<Login />} />}
           {!authCtx.isLoggedIn && <Route path="signup" element={<SignUp />} />}
           {authCtx.isLoggedIn && <Navigate to="/" />}
           <Route path="/" element={<Welcome />} />
         </Routes>
-      </div>
-    </div>
   );
 }
 
