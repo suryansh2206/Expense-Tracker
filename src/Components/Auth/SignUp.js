@@ -52,29 +52,29 @@ const SignUp = () => {
   };
 
   return (
-    <div class="container">
-      <div class="form-box">
-        <form class="form">
-          <span class="title">Sign up</span>
-          <span class="subtitle">Create a free account with your email.</span>
-          <div class="form-container">
+    <div className="container">
+      <div className="form-box">
+        <form className="form">
+          <span className="title">Sign up</span>
+          <span className="subtitle">Create a free account with your email.</span>
+          <div className="form-container">
             <input
               type="email"
-              class="input"
+              className="input"
               placeholder="Email"
               required
               ref={emailInputRef}
             />
             <input
               type="password"
-              class="input"
+              className="input"
               placeholder="Password"
               required
               ref={passwordInputRef}
             />
             <input
               type="password"
-              class="input"
+              className="input"
               placeholder="Confirm Password"
               required
               ref={confirmPasswordInputRef}
@@ -82,7 +82,7 @@ const SignUp = () => {
           </div>
           <button onClick={signupHandler}>Sign up</button>
         </form>
-        <div class="form-section">
+        <div className="form-section">
           <p>
             Have an account?{" "}
             <NavLink activeClassName="active" className="link" to="/login">

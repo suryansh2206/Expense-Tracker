@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(144, 210, 232);
+  background-color: rgb(158, 219, 239);
   padding: 2rem;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .link {
-  color: #f90d0d;
+  /* color: #0b0000; */
   text-decoration: none;
 }
 

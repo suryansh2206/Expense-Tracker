@@ -1,9 +1,13 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./UpdateProfile.css";
 
 const UpdateProfile = () => {
   const nameInputRef = useRef();
   const photoURLInputRef = useRef();
+
+  const [displayName, setName] = useState("");
+  const [imageURL, setUrl] = useState("");
+
   const updateHandler = (event) => {
     event.preventDefault();
     const name = nameInputRef.current.value;
@@ -35,6 +39,28 @@ const UpdateProfile = () => {
     });
   };
 
+  useEffect(() => {
+    fetch(
+      "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCY-VGJzQO4PuIAWLAzUqOd4c2XvpMOQFs",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          idToken: localStorage.getItem("token"),
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setName(data.users[0].displayName);
+        setUrl(data.users[0].photoUrl);
+      });
+  }, []);
+
   return (
     <>
       <header className="header">
@@ -43,25 +69,27 @@ const UpdateProfile = () => {
         </div>
       </header>
       <div className="container">
-        <div class="card">
-          <span class="card__title">Contact Details</span>
-          <div class="card__form">
+        <div className="card">
+          <span className="card__title">Contact Details</span>
+          <div className="card__form">
             <input
               placeholder="Full Name"
               type="text"
               required
+              defaultValue={displayName}
               ref={nameInputRef}
             />
             <input
               placeholder="Profile picture URL"
               type="text"
               required
+              defaultValue={imageURL}
               ref={photoURLInputRef}
             />
-            <button class="sign-up" onClick={updateHandler}>
+            <button className="sign-up" onClick={updateHandler}>
               Update
             </button>
-            <button class="cancel_button"> Cancel</button>
+            <button className="cancel_button"> Cancel</button>
           </div>
         </div>
       </div>

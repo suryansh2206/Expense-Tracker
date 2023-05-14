@@ -41,10 +41,10 @@ const Login = () => {
       .then((data) => {
         console.log(data);
         if (data.idToken) {
-        //   authCtx.logIn(data.idToken, enteredEmail); //not working from here most probably
-        // localStorage.setItem  
-        console.log(data.idToken);
-          navigate('/')
+          //   authCtx.logIn(data.idToken, enteredEmail); //not working from here most probably
+          console.log(data.idToken);
+          localStorage.setItem("token", data.idToken);
+          navigate("/");
         }
       })
       .catch((err) => {
@@ -55,21 +55,21 @@ const Login = () => {
     console.log("Successfully Logged In");
   };
   return (
-    <div class="container">
-      <div class="form-box">
-        <form class="form">
-          <span class="title">Log In</span>
-          <div class="form-container">
+    <div className="container">
+      <div className="form-box">
+        <form className="form">
+          <span className="title">Log In</span>
+          <div className="form-container">
             <input
               type="email"
-              class="input"
+              className="input"
               placeholder="Email"
               required
               ref={emailInputRef}
             />
             <input
               type="password"
-              class="input"
+              className="input"
               placeholder="Password"
               required
               ref={passwordInputRef}
@@ -77,7 +77,7 @@ const Login = () => {
           </div>
           <button onClick={loginHandler}>Log In</button>
         </form>
-        <div class="form-section">
+        <div className="form-section">
           <p>
             Don't have an account?{" "}
             <NavLink activeClassName="active" className="link" to="/signup">
