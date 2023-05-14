@@ -1,12 +1,19 @@
 import React, { Fragment } from "react";
 import "./Welcome.css";
+import { NavLink } from "react-router-dom";
 
 const Welcome = () => {
   return (
     <Fragment>
-      <div className="container">
-        <div className="header-items">Welcome to Expense Tracker</div>
-      </div>
+      <header className="header">
+        <div className="left-column">Welcome to Expense Tracker</div>
+        <div className="rigth-column">
+          <div>Your Profile is incomplete</div>
+          <NavLink activeClassName="active" className="link" to='/updateprofile'>
+            Complete now
+          </NavLink>
+        </div>
+      </header>
     </Fragment>
   );
 };

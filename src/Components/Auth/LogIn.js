@@ -1,10 +1,11 @@
 import "./LogIn.css";
 import React from "react";
 import { useRef, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../../Store/auth-context";
 
 const Login = () => {
+  const navigate = useNavigate();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const authCtx = useContext(AuthContext);
@@ -22,7 +23,7 @@ const Login = () => {
           password: enteredPassword,
           returnSecureToken: true,
         }),
-        header: {
+        headers: {
           "Content-Type": "application/json",
         },
       }
@@ -40,9 +41,10 @@ const Login = () => {
       .then((data) => {
         console.log(data);
         if (data.idToken) {
-          console.log(data.idToken);
-          authCtx.logIn(data.idToken, enteredEmail); //not working from here most probably
-          // history.replace('/')
+        //   authCtx.logIn(data.idToken, enteredEmail); //not working from here most probably
+        // localStorage.setItem  
+        console.log(data.idToken);
+          navigate('/')
         }
       })
       .catch((err) => {

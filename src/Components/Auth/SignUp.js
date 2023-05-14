@@ -26,13 +26,16 @@ const SignUp = () => {
             password: enteredPassword,
             returnSecureToken: true,
           }),
-          header: {
+          headers: {
             "Content-Type": "application/json",
           },
         }
       ).then((res) => {
         //   setIsLoading(false);
         if (res.ok) {
+          res.json().then((data) => {
+            localStorage.setItem("token", data.idToken);
+          });
           console.log("Sign Up Successful");
         } else {
           return res.json().then((data) => {
@@ -93,3 +96,6 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+localStorage.removeItem('token')
+

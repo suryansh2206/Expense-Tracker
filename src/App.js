@@ -6,16 +6,17 @@ import Login from "./Components/Auth/LogIn";
 import { useContext } from "react";
 import AuthContext from "./Store/auth-context";
 import Welcome from "./Components/Pages/Welcome";
+import UpdateProfile from "./Components/Pages/UpdateProfile";
 
 function App() {
   const authCtx = useContext(AuthContext);
   return (
-        <Routes>
-          {!authCtx.isLoggedIn && <Route path="/login" element={<Login />} />}
-          {!authCtx.isLoggedIn && <Route path="signup" element={<SignUp />} />}
-          {authCtx.isLoggedIn && <Navigate to="/" />}
-          <Route path="/" element={<Welcome />} />
-        </Routes>
+    <Routes>
+      {<Route path="/login" element={<Login />} />}
+      {<Route path="signup" element={<SignUp />} />}
+      <Route path="/" element={<Welcome />} />
+      <Route path="/updateprofile" element={<UpdateProfile />} />
+    </Routes>
   );
 }
 
