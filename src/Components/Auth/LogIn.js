@@ -75,12 +75,15 @@ const Login = () => {
               ref={passwordInputRef}
             />
           </div>
+          <NavLink activeClassName="active" className="link" to="/resetpassword">
+              <>Forgot password?</>
+            </NavLink>
           <button onClick={loginHandler}>Log In</button>
         </form>
         <div className="form-section">
           <p>
             Don't have an account?{" "}
-            <NavLink activeClassName="active" className="link" to="/signup">
+            <NavLink to="/signup">
               <>Sign up</>
             </NavLink>
           </p>
