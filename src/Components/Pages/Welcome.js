@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
 import classes from "./Welcome.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Welcome = () => {
+  const navigate = useNavigate()
   const verifyHandler = () => {
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCY-VGJzQO4PuIAWLAzUqOd4c2XvpMOQFs",
@@ -27,6 +28,11 @@ const Welcome = () => {
     });
   };
 
+  const logoutHandler = () => {
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
+
   return (
     <Fragment>
       <header className={classes.header}>
@@ -43,6 +49,9 @@ const Welcome = () => {
           <div>
             Verify your email now{"  "}
             <button onClick={verifyHandler}>Verify</button>
+            <div>
+              <button onClick={logoutHandler}>Logout</button>
+            </div>
           </div>
         </div>
       </header>
