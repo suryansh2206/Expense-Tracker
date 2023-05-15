@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import classes from "./Welcome.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import ExpenseForm from "../Expenses/ExpenseForm";
 
 const Welcome = () => {
   const navigate = useNavigate()
@@ -55,6 +56,7 @@ const Welcome = () => {
           </div>
         </div>
       </header>
+      <ExpenseForm/>
     </Fragment>
   );
 };

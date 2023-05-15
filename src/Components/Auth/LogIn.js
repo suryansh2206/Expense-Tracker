@@ -51,7 +51,7 @@ const Login = () => {
         console.log(err);
         alert(err);
       });
-
+    localStorage.setItem("email", enteredEmail);
     console.log("Successfully Logged In");
   };
   return (
@@ -75,9 +75,13 @@ const Login = () => {
               ref={passwordInputRef}
             />
           </div>
-          <NavLink activeClassName="active" className="link" to="/resetpassword">
-              <>Forgot password?</>
-            </NavLink>
+          <NavLink
+            activeClassName="active"
+            className="link"
+            to="/resetpassword"
+          >
+            <>Forgot password?</>
+          </NavLink>
           <button onClick={loginHandler}>Log In</button>
         </form>
         <div className="form-section">

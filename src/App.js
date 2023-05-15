@@ -8,6 +8,7 @@ import AuthContext from "./Store/auth-context";
 import Welcome from "./Components/Pages/Welcome";
 import UpdateProfile from "./Components/Pages/UpdateProfile";
 import ResetPassword from "./Components/Auth/ResetPassword"
+import ExpenseForm from "./Components/Expenses/ExpenseForm";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -18,6 +19,7 @@ function App() {
       <Route path="/" element={<Welcome />} />
       <Route path="/updateprofile" element={<UpdateProfile />} />
       <Route path="/resetpassword" element={<ResetPassword />} />
+      {/* <Route path='/expenseform' element={<ExpenseForm/>} /> */}
     </Routes>
   );
 }
