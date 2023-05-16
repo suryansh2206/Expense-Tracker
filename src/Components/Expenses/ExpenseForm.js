@@ -41,6 +41,39 @@ const ExpenseForm = () => {
       });
   }, []);
 
+  const getId = (id, isEdit) => {
+    const expenseToEdit = items.find((expense) => expense.key === id);
+    if (isEdit) {
+      console.log(expenseToEdit);
+      amountInputRef.current.value = expenseToEdit.amount;
+      descriptionInputRef.current.value = expenseToEdit.description;
+      categoryInputRef.current.value = expenseToEdit.category;
+    }
+
+    let expenseArr = [];
+
+    expenseArr = items.filter((item) => {
+      return item !== expenseToEdit;
+    });
+    setItems(expenseArr);
+    fetch(
+      `https://react-http-a080a-default-rtdb.firebaseio.com/expensedetails/${username}.json`,
+      {
+        method: "DELETE",
+      }
+    ).then((res) => {
+      if (res.ok) {
+        console.log("deleted");
+        return res.json();
+      } else {
+        return res.json().then((data) => {
+          alert(data.error.message);
+          console.log(data.error);
+        });
+      }
+    });
+  };
+
   const submitHandler = async (event) => {
     event.preventDefault();
 
@@ -71,6 +104,9 @@ const ExpenseForm = () => {
       console.log(data.error.message);
     } else {
       console.log(data);
+      amountInputRef.current.value = "";
+      descriptionInputRef.current.value = "";
+      categoryInputRef.current.value = "";
     }
   };
 
@@ -82,22 +118,33 @@ const ExpenseForm = () => {
           <div class="inputBox">
             <input
               type="number"
-              required="required"
               min="1"
               step="10"
+              placeholder="AMOUNT"
+              required
               ref={amountInputRef}
             />
-            <span class="user">Money</span>
+            {/* <span >Money</span> */}
           </div>
 
           <div class="inputBox">
-            <input type="text" required="required" ref={descriptionInputRef} />
-            <span>Description</span>
+            <input
+              type="text"
+              placeholder="DESCRIPTION"
+              required
+              ref={descriptionInputRef}
+            />
+            {/* <span>Description</span> */}
           </div>
 
           <div class="inputBox">
-            <input list="category" required="required" ref={categoryInputRef} />
-            <span>Category</span>
+            <input
+              list="category"
+              placeholder="CATEGORY"
+              required
+              ref={categoryInputRef}
+            />
+            {/* <span>Category</span> */}
             <datalist id="category">
               <option value="Snacks"></option>
               <option value="Mobile Recharge"></option>
@@ -113,7 +160,7 @@ const ExpenseForm = () => {
         </div>
       </div>
       <div>
-        <ExpenseList items={items} />
+        <ExpenseList items={items} getId={getId} />
       </div>
     </>
   );
