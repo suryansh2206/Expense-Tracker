@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import ExpenseForm from "../Expenses/ExpenseForm";
 
 const Welcome = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const verifyHandler = () => {
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCY-VGJzQO4PuIAWLAzUqOd4c2XvpMOQFs",
@@ -30,33 +30,27 @@ const Welcome = () => {
   };
 
   const logoutHandler = () => {
-    localStorage.removeItem('token')
-    navigate('/login')
-  }
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   return (
     <Fragment>
       <header className={classes.header}>
         <div className={classes.left}>Welcome to Expense Tracker</div>
         <div className={classes.rigth}>
-          Your Profile is incomplete{"  "}
           <NavLink
             activeClassName="active"
             className="link"
             to="/updateprofile"
           >
-            Complete now
-          </NavLink>
-          <div>
-            Verify your email now{"  "}
-            <button onClick={verifyHandler}>Verify</button>
-            <div>
-              <button onClick={logoutHandler}>Logout</button>
-            </div>
-          </div>
+            Update Profile
+          </NavLink>{" "}
+          <button onClick={verifyHandler}>Verify Email</button>{" "}
+          <button onClick={logoutHandler}>Logout</button>
         </div>
       </header>
-      <ExpenseForm/>
+      <ExpenseForm />
     </Fragment>
   );
 };

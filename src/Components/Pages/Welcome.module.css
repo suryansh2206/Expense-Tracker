@@ -7,8 +7,14 @@
 }
 
 .left {
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
   font-weight: bold;
   font-size: x-large;
+  text-align: center;
+  margin-top: 0px;
 }
 
 .right {
