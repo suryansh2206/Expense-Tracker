@@ -56,8 +56,10 @@ const UpdateProfile = () => {
         return res.json();
       })
       .then((data) => {
-        setName(data.users[0].displayName);
-        setUrl(data.users[0].photoUrl);
+        if (data) {
+          setName(data.users[0].displayName);
+          setUrl(data.users[0].photoUrl);
+        }
       });
   }, []);
 
