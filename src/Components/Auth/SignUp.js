@@ -1,4 +1,4 @@
-import "./SignUp.css";
+import classes from  "./SignUp.module.css";
 import React from "react";
 import { useRef } from "react";
 import { NavLink } from "react-router-dom";
@@ -50,29 +50,29 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container">
-      <div className="form-box">
-        <form className="form">
-          <span className="title">Sign up</span>
-          <span className="subtitle">Create a free account with your email.</span>
-          <div className="form-container">
+    <div className={classes.container}>
+      <div className={classes.formbox}>
+        <form className={classes.form}>
+          <span className={classes.title}>Sign up</span>
+          <span className={classes.subtitle}>Create a free account with your email.</span>
+          <div className={classes.formcontainer}>
             <input
               type="email"
-              className="input"
+              className={classes.input}
               placeholder="Email"
               required
               ref={emailInputRef}
             />
             <input
               type="password"
-              className="input"
+              className={classes.input}
               placeholder="Password"
               required
               ref={passwordInputRef}
             />
             <input
               type="password"
-              className="input"
+              className={classes.input}
               placeholder="Confirm Password"
               required
               ref={confirmPasswordInputRef}
@@ -80,7 +80,7 @@ const SignUp = () => {
           </div>
           <button onClick={signupHandler}>Sign up</button>
         </form>
-        <div className="form-section">
+        <div className={classes.formsection}>
           <p>
             Have an account?{" "}
             <NavLink activeClassName="active" className="link" to="/login">

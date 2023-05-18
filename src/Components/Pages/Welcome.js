@@ -34,20 +34,31 @@ const Welcome = () => {
     navigate("/login");
   };
 
+  const updateProfileHandler = () => {
+    navigate("/updateprofile");
+  }
+
   return (
     <Fragment>
       <header className={classes.header}>
         <div className={classes.left}>Welcome to Expense Tracker</div>
         <div className={classes.rigth}>
-          <NavLink
+          {/* <NavLink
             activeClassName="active"
             className="link"
             to="/updateprofile"
           >
             Update Profile
-          </NavLink>{" "}
-          <button onClick={verifyHandler}>Verify Email</button>{" "}
-          <button onClick={logoutHandler}>Logout</button>
+          </NavLink>{" "} */}
+          <button className={classes.welcome} onClick={updateProfileHandler}>
+            Update Profile
+          </button>{" "}
+          <button className={classes.welcome} onClick={verifyHandler}>
+            Verify Email
+          </button>{" "}
+          <button className={classes.welcome} onClick={logoutHandler}>
+            Logout
+          </button>
         </div>
       </header>
       <ExpenseForm />

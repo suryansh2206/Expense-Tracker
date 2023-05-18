@@ -1,4 +1,4 @@
-import "./LogIn.css";
+import classes from "./Login.module.css";
 import React from "react";
 import { useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -52,21 +52,21 @@ const Login = () => {
     console.log("Successfully Logged In");
   };
   return (
-    <div className="container">
-      <div className="form-box">
-        <form className="form">
-          <span className="title">Log In</span>
-          <div className="form-container">
+    <div className={classes.container}> 
+      <div className={classes.formbox}>
+        <form className={classes.form}>
+          <span className={classes.title}>Log In</span>
+          <div className={classes.formcontainer}>
             <input
               type="email"
-              className="input"
+              className={classes.input}
               placeholder="Email"
               required
               ref={emailInputRef}
             />
             <input
               type="password"
-              className="input"
+              className={classes.input}
               placeholder="Password"
               required
               ref={passwordInputRef}
@@ -81,7 +81,7 @@ const Login = () => {
           </NavLink>
           <button onClick={loginHandler}>Log In</button>
         </form>
-        <div className="form-section">
+        <div className={classes.formsection}>
           <p>
             Don't have an account?{" "}
             <NavLink to="/signup">

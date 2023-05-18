@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "./ExpenseForm.css";
+import classes from "./ExpenseForm.module.css";
 import ExpenseList from "./ExpenseList";
 
 const ExpenseForm = () => {
@@ -112,10 +112,10 @@ const ExpenseForm = () => {
 
   return (
     <>
-      <div class="container">
-        <div class="card">
-          <p class="login">Enter expense details</p>
-          <div class="inputBox">
+      <div className={classes.container}>
+        <div className={classes.card}>
+          <div className={classes.login}>Enter expense details</div>
+          <div className={classes.inputBox}>
             <input
               type="number"
               min="1"
@@ -127,7 +127,7 @@ const ExpenseForm = () => {
             {/* <span >Money</span> */}
           </div>
 
-          <div class="inputBox">
+          <div className={classes.inputBox}>
             <input
               type="text"
               placeholder="DESCRIPTION"
@@ -137,7 +137,7 @@ const ExpenseForm = () => {
             {/* <span>Description</span> */}
           </div>
 
-          <div class="inputBox">
+          <div className={classes.inputBox}>
             <input
               list="category"
               placeholder="CATEGORY"
@@ -154,7 +154,7 @@ const ExpenseForm = () => {
             </datalist>
           </div>
 
-          <button class="enter" onClick={submitHandler}>
+          <button className={classes.enter} onClick={submitHandler}>
             Enter
           </button>
         </div>

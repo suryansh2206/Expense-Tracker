@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import "./UpdateProfile.css";
+import classes from "./UpdateProfile.module.css";
+import { useNavigate } from "react-router-dom";
 
 const UpdateProfile = () => {
   const nameInputRef = useRef();
   const photoURLInputRef = useRef();
+  const navigate = useNavigate()
 
   const [displayName, setName] = useState("");
   const [imageURL, setUrl] = useState("");
@@ -63,17 +65,21 @@ const UpdateProfile = () => {
       });
   }, []);
 
+  const cancelHandler = () => {
+    navigate('/')
+  }
+
   return (
     <>
-      <header className="header">
-        <div className="left-column">
+      <header className={classes.header}>
+        <div className={classes.leftcolumn}>
           Winners never quit, Quitters never win
         </div>
       </header>
-      <div className="container">
-        <div className="card">
-          <span className="card__title">Contact Details</span>
-          <div className="card__form">
+      <div className={classes.container}>
+        <div className={classes.card}>
+          <span className={classes.cardtitle}>Contact Details</span>
+          <div className={classes.cardform}>
             <input
               placeholder="Full Name"
               type="text"
@@ -88,10 +94,10 @@ const UpdateProfile = () => {
               defaultValue={imageURL}
               ref={photoURLInputRef}
             />
-            <button className="sign-up" onClick={updateHandler}>
+            <button className={classes.signup} onClick={updateHandler}>
               Update
             </button>
-            <button className="cancel_button"> Cancel</button>
+            <button className={classes.cancelbutton} onClick={cancelHandler}> Cancel</button>
           </div>
         </div>
       </div>

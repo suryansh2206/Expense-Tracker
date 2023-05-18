@@ -1,5 +1,5 @@
 import React from "react";
-import "./ExpenseList.css";
+import classes from "./ExpenseList.module.css";
 
 const ExpenseList = (props) => {
   const clickHandler = (id, isEdit) => {
@@ -8,10 +8,10 @@ const ExpenseList = (props) => {
   return (
     <>
       <h3>Expense List</h3>
-      <ul className="expense-list">
+      <ul className={classes.expenselist}>
         {props.items.map((expense) => (
           <li key={Math.random() * 10}>
-            {expense.category} - {expense.description} - {expense.amount}
+            <b>Category</b>{expense.category} <b>Description</b>{expense.description} <b>Amount</b>{expense.amount}
             <button onClick={() => clickHandler(expense.key, true)}>
               Edit
             </button>{" "}

@@ -4,30 +4,34 @@
   letter-spacing: 2px;
   display: block;
   font-weight: bold;
-  font-size: x-large;
+  font-size:large;
   text-align: center;
-  margin-top: -250px;
+  margin-top: -0px;
+  margin-left: 20px;
+  /* white-space: nowrap; */
 }
 
 .card {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 350px;
-  width: 700px;
+  min-height: 300px;
+  width: 800px;
   flex-direction: row; /* changed from column */
-  gap: 35px;
+  gap: 30px;
   background: #e3e3e3;
   box-shadow: 16px 16px 32px #c8c8c8, -16px -16px 32px #fefefe;
   border-radius: 8px;
 }
 
 .inputBox {
+  margin-left: 20px;
+  margin-right: 20px;
   position: relative;
-  width: 250px; /* added */
+  width: 200px; /* added */
   display: flex; /* added */
   flex-direction: column; /* added */
-  margin-right: 10px; /* added */
+  margin-right: 50px; /* added */
 }
 
 .inputBox input {
@@ -78,6 +82,8 @@
 }
 
 .enter {
+  margin-left: 20px;
+  margin-right: 20px;
   height: 45px;
   width: 100px;
   border-radius: 5px;
@@ -94,4 +100,10 @@
 .enter:hover {
   background-color: rgb(0, 0, 0);
   color: white;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* adjust this to set the height of the container */
 }

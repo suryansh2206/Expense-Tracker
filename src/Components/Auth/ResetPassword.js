@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import "../Pages/UpdateProfile.css";
+import classes from "../Pages/UpdateProfile.module.css";
 
 const ResetPassword = () => {
   const emailInputRef = useRef();
