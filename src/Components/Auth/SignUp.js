@@ -1,14 +1,12 @@
 import "./SignUp.css";
 import React from "react";
-import { useRef, useContext } from "react";
-import AuthContext from "../../Store/auth-context";
+import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 
 const SignUp = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
-  const authCtx = useContext(AuthContext);
 
   const signupHandler = (event) => {
     event.preventDefault();

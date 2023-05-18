@@ -1,14 +1,12 @@
 import "./LogIn.css";
 import React from "react";
-import { useRef, useContext } from "react";
+import { useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import AuthContext from "../../Store/auth-context";
 
 const Login = () => {
   const navigate = useNavigate();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-  const authCtx = useContext(AuthContext);
 
   const loginHandler = (event) => {
     event.preventDefault();
@@ -41,7 +39,6 @@ const Login = () => {
       .then((data) => {
         console.log(data);
         if (data.idToken) {
-          //   authCtx.logIn(data.idToken, enteredEmail); //not working from here most probably
           console.log(data.idToken);
           localStorage.setItem("token", data.idToken);
           navigate("/");
