@@ -1,12 +1,14 @@
 import classes from  "./SignUp.module.css";
 import React from "react";
 import { useRef } from "react";
+// import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const SignUp = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
+  // const dispatch = useDispatch()
 
   const signupHandler = (event) => {
     event.preventDefault();

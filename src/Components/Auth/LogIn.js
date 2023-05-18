@@ -1,9 +1,11 @@
 import classes from "./Login.module.css";
-import React from "react";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../Store/auth";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -42,6 +44,7 @@ const Login = () => {
           console.log(data.idToken);
           localStorage.setItem("token", data.idToken);
           navigate("/");
+          dispatch(authActions.login(enteredEmail));
         }
       })
       .catch((err) => {
@@ -52,7 +55,7 @@ const Login = () => {
     console.log("Successfully Logged In");
   };
   return (
-    <div className={classes.container}> 
+    <div className={classes.container}>
       <div className={classes.formbox}>
         <form className={classes.form}>
           <span className={classes.title}>Log In</span>

@@ -1,10 +1,13 @@
 import React, { Fragment } from "react";
 import classes from "./Welcome.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ExpenseForm from "../Expenses/ExpenseForm";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../Store/auth";
 
 const Welcome = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const verifyHandler = () => {
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCY-VGJzQO4PuIAWLAzUqOd4c2XvpMOQFs",
@@ -32,6 +35,7 @@ const Welcome = () => {
   const logoutHandler = () => {
     localStorage.removeItem("token");
     navigate("/login");
+    dispatch(authActions.logout())
   };
 
   const updateProfileHandler = () => {
