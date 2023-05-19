@@ -97,5 +97,4 @@ const SignUp = () => {
 
 export default SignUp;
 
-localStorage.removeItem('token')
 

@@ -1,14 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import classes from "./ExpenseForm.module.css";
 import ExpenseList from "./ExpenseList";
+import { useDispatch, useSelector } from "react-redux";
+import { expenseAction } from "../../Store/expense";
 
 const ExpenseForm = () => {
   const amountInputRef = useRef();
   const descriptionInputRef = useRef();
   const categoryInputRef = useRef();
-  const [items, setItems] = useState([]);
+  const dispatch = useDispatch();
+  // const [items, setItems] = useState([]);
 
-  let username = localStorage.getItem("email");
+  const item = useSelector((state) => state.expense.expenses);
+  let username = localStorage.getItem("email") || " ";
   let t = "";
   for (let i = 0; i < username.length; i++) {
     if (username[i] === "." || username[i] === "@") {
@@ -19,43 +23,19 @@ const ExpenseForm = () => {
   }
   username = t;
 
-  useEffect(() => {
-    fetch(
-      `https://react-http-a080a-default-rtdb.firebaseio.com/expensedetails/${username}.json`
-    )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          console.log(res.data);
-        }
-      })
-      .then((data) => {
-        let expensedata = [];
-        if (data) {
-          for (let [key, value] of Object.entries(data)) {
-            expensedata.push({ key, ...value });
-          }
-        }
-        setItems(expensedata);
-      });
-  }, []);
-
   const getId = (id, isEdit) => {
-    const expenseToEdit = items.find((expense) => expense.key === id);
+    const expenseToEdit = item.find((expense) => expense.key === id);
     if (isEdit) {
       console.log(expenseToEdit);
-      amountInputRef.current.value = expenseToEdit.amount;
+      amountInputRef.current.value = expenseToEdit.expense;
       descriptionInputRef.current.value = expenseToEdit.description;
       categoryInputRef.current.value = expenseToEdit.category;
     }
-
-    let expenseArr = [];
-
-    expenseArr = items.filter((item) => {
-      return item !== expenseToEdit;
-    });
-    setItems(expenseArr);
+    // let expenseArr = [];
+    // expenseArr = items.filter((item) => {
+    //   return item !== expenseToEdit;
+    // });
+    // setItems(expenseArr);
     fetch(
       `https://react-http-a080a-default-rtdb.firebaseio.com/expensedetails/${username}.json`,
       {
@@ -72,21 +52,52 @@ const ExpenseForm = () => {
         });
       }
     });
+    dispatch(expenseAction.removeExpense(id));
   };
+
+  useEffect(() => {
+    fetch(
+      `https://react-http-a080a-default-rtdb.firebaseio.com/expensedetails/${username}.json`
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          console.log(res.data);
+        }
+      })
+      .then((data) => {
+        let expensedata = [];
+        let totalExpenseAmount = 0;
+        if (data) {
+          for (let [key, value] of Object.entries(data)) {
+            expensedata.push({ key, ...value });
+            totalExpenseAmount = totalExpenseAmount + +value.expense;
+          }
+        }
+        console.log(totalExpenseAmount);
+        // setItems(expensedata);
+        dispatch(
+          expenseAction.replaceExpense({
+            items: expensedata || [],
+            totalExpense: totalExpenseAmount,
+          })
+        );
+      });
+  }, []);
 
   const submitHandler = async (event) => {
     event.preventDefault();
-
     const amount = amountInputRef.current.value;
     const description = descriptionInputRef.current.value;
     const category = categoryInputRef.current.value;
     const expense = {
-      amount,
-      description,
-      category,
+      expense: amount,
+      description: description,
+      category: category,
     };
 
-    setItems([...items, expense]);
+    // setItems([...items, expense]);
 
     const response = await fetch(
       `https://react-http-a080a-default-rtdb.firebaseio.com/expensedetails/${username}.json`,
@@ -108,6 +119,15 @@ const ExpenseForm = () => {
       descriptionInputRef.current.value = "";
       categoryInputRef.current.value = "";
     }
+
+    dispatch(
+      expenseAction.addExpense({
+        expense: expense.expense,
+        description: expense.description,
+        category: expense.category,
+      })
+    );
+    window.location.reload();
   };
 
   return (
@@ -160,7 +180,7 @@ const ExpenseForm = () => {
         </div>
       </div>
       <div>
-        <ExpenseList items={items} getId={getId} />
+        <ExpenseList getId={getId} />
       </div>
     </>
   );

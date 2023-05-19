@@ -8,7 +8,8 @@ import ResetPassword from "./Components/Auth/ResetPassword";
 import { useSelector } from "react-redux";
 
 function App() {
-  const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  // const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const isAuth = localStorage.getItem('token');
   return (
     <Routes>
       {!isAuth && <Route path="/login" element={<Login />} />}

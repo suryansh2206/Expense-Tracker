@@ -2,12 +2,13 @@ import React, { Fragment } from "react";
 import classes from "./Welcome.module.css";
 import { useNavigate } from "react-router-dom";
 import ExpenseForm from "../Expenses/ExpenseForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../Store/auth";
 
 const Welcome = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const ExpenseCount = useSelector((state) => state.expense.totalExpense);
   const verifyHandler = () => {
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCY-VGJzQO4PuIAWLAzUqOd4c2XvpMOQFs",
@@ -35,12 +36,13 @@ const Welcome = () => {
   const logoutHandler = () => {
     localStorage.removeItem("token");
     navigate("/login");
-    dispatch(authActions.logout())
+    dispatch(authActions.logout());
+    window.location.reload();
   };
 
   const updateProfileHandler = () => {
     navigate("/updateprofile");
-  }
+  };
 
   return (
     <Fragment>
@@ -62,7 +64,10 @@ const Welcome = () => {
           </button>{" "}
           <button className={classes.welcome} onClick={logoutHandler}>
             Logout
-          </button>
+          </button>{" "}
+          {ExpenseCount > 1000 && (
+            <button className={classes.welcome}>Premium</button>
+          )}
         </div>
       </header>
       <ExpenseForm />

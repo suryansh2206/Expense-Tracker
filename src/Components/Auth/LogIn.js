@@ -43,16 +43,17 @@ const Login = () => {
         if (data.idToken) {
           console.log(data.idToken);
           localStorage.setItem("token", data.idToken);
+          localStorage.setItem("email", enteredEmail);
           navigate("/");
           dispatch(authActions.login(enteredEmail));
+          console.log('Logged In Successfully');
+          window.location.reload();
         }
       })
       .catch((err) => {
         console.log(err);
         alert(err);
       });
-    localStorage.setItem("email", enteredEmail);
-    console.log("Successfully Logged In");
   };
   return (
     <div className={classes.container}>
