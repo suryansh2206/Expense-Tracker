@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import ExpenseForm from "../Expenses/ExpenseForm";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../Store/auth";
+import { themeActions } from "../../Store/theme";
 
 const Welcome = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const ExpenseCount = useSelector((state) => state.expense.totalExpense);
+  const isActivated = useSelector((state) => state.theme.isActivated);
+  const bgColor = useSelector((state) => state.theme.bgColor);
   const verifyHandler = () => {
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCY-VGJzQO4PuIAWLAzUqOd4c2XvpMOQFs",
@@ -35,6 +37,7 @@ const Welcome = () => {
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
     navigate("/login");
     dispatch(authActions.logout());
     window.location.reload();
@@ -44,10 +47,17 @@ const Welcome = () => {
     navigate("/updateprofile");
   };
 
+  const toggleHandler = (event) => {
+    // event.preventDefault();
+    dispatch(themeActions.changeTheme());
+  };
+
   return (
     <Fragment>
       <header className={classes.header}>
-        <div className={classes.left}>Welcome to Expense Tracker</div>
+        <div className={classes.left}>
+          <div>Welcome to Expense Tracker</div>
+        </div>
         <div className={classes.rigth}>
           {/* <NavLink
             activeClassName="active"
@@ -65,12 +75,19 @@ const Welcome = () => {
           <button className={classes.welcome} onClick={logoutHandler}>
             Logout
           </button>{" "}
-          {ExpenseCount > 1000 && (
-            <button className={classes.welcome}>Premium</button>
-          )}
         </div>
       </header>
-      <ExpenseForm />
+      <div className={bgColor ? "dark" : ""}>
+        <div className={classes.togglebutton}>
+          {isActivated && (
+            <label class={classes.switchcontainer}>
+              <input type="checkbox" onClick={toggleHandler} />
+              <span class={classes.slider}></span>
+            </label>
+          )}
+        </div>
+        <ExpenseForm />
+      </div>
     </Fragment>
   );
 };

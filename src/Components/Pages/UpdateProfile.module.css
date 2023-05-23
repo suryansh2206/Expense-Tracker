@@ -114,3 +114,10 @@
 .cancelbutton:hover {
   opacity: 0.8;
 }
+
+.dark {
+  background-color: #064e3b;
+  /* height: 115vh; */
+  padding-bottom: 2rem;
+  min-height: 100vh;
+}

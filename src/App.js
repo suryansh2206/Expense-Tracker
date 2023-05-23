@@ -9,21 +9,24 @@ import { useSelector } from "react-redux";
 
 function App() {
   // const isAuth = useSelector((state) => state.auth.isAuthenticated);
-  const isAuth = localStorage.getItem('token');
+  const isAuth = localStorage.getItem("token");
+  const bgColor = useSelector((state) => state.theme.bgColor);
   return (
-    <Routes>
-      {!isAuth && <Route path="/login" element={<Login />} />}
-      {!isAuth && <Route path="signup" element={<SignUp />} />}
-      {!isAuth ? (
-        <Route path="/*" element={<Navigate to="/login" />} />
-      ) : (
-        <>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/updateprofile" element={<UpdateProfile />} />
-        </>
-      )}
-      <Route path="/resetpassword" element={<ResetPassword />} />
-    </Routes>
+    <div className={bgColor ? "dark" : ""}>
+      <Routes>
+        {!isAuth && <Route path="/login" element={<Login />} />}
+        {!isAuth && <Route path="signup" element={<SignUp />} />}
+        {!isAuth ? (
+          <Route path="/*" element={<Navigate to="/login" />} />
+        ) : (
+          <>
+            <Route path="/" element={<Welcome />} />
+            <Route path="/updateprofile" element={<UpdateProfile />} />
+          </>
+        )}
+        <Route path="/resetpassword" element={<ResetPassword />} />
+      </Routes>
+    </div>
   );
 }
 

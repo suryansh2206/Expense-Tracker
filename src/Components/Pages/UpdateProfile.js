@@ -1,19 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import classes from "./UpdateProfile.module.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const UpdateProfile = () => {
   const nameInputRef = useRef();
   const photoURLInputRef = useRef();
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const bgColor = useSelector((state) => state.theme.bgColor);
   const [displayName, setName] = useState("");
   const [imageURL, setUrl] = useState("");
 
   const updateHandler = (event) => {
     event.preventDefault();
-    const name = nameInputRef.current.value;
-    const photoURL = photoURLInputRef.current.value;
+    let name = nameInputRef.current.value;
+    let photoURL = photoURLInputRef.current.value;
 
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyCY-VGJzQO4PuIAWLAzUqOd4c2XvpMOQFs",
@@ -58,19 +59,17 @@ const UpdateProfile = () => {
         return res.json();
       })
       .then((data) => {
-        if (data) {
-          setName(data.users[0].displayName);
-          setUrl(data.users[0].photoUrl);
-        }
+        setName(data.users[0].displayName);
+        setUrl(data.users[0].photoUrl);
       });
   }, []);
 
   const cancelHandler = () => {
-    navigate('/')
-  }
+    navigate("/");
+  };
 
   return (
-    <>
+    <div className={bgColor ? 'dark' : ''}>
       <header className={classes.header}>
         <div className={classes.leftcolumn}>
           Winners never quit, Quitters never win
@@ -97,11 +96,14 @@ const UpdateProfile = () => {
             <button className={classes.signup} onClick={updateHandler}>
               Update
             </button>
-            <button className={classes.cancelbutton} onClick={cancelHandler}> Cancel</button>
+            <button className={classes.cancelbutton} onClick={cancelHandler}>
+              {" "}
+              Cancel
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(158, 219, 239);
+  background-color: rgb(3, 20, 128);
   padding: 2rem;
 }
 
@@ -38,7 +38,7 @@
   padding: 0.5em 1em;
   border: transparent;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-  background: dodgerblue;
+  background: rgb(3, 20, 128);
   color: white;
   border-radius: 4px;
 }
@@ -54,4 +54,73 @@
 
 .welcome:active {
   transform: translate(0em, 0.2em);
+}
+
+.dark {
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(158, 219, 239);
+  padding: 2rem;
+}
+
+/* The switch - the box around the slider */
+/* The switch - the box around the slider */
+.switchcontainer {
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switchcontainer input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.switchcontainer .slider {
+  --background: linear-gradient(to right, #090613ef, #18151f);
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--background);
+  transition: background-color 0.5s;
+  border-radius: 30px;
+}
+
+.switchcontainer .slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 50%;
+  left: 10%;
+  bottom: 15%;
+  box-shadow: inset 15px -4px 0px 15px #f8ea27;
+  background: var(--background);
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.switchcontainer input:checked + .slider {
+  background-color: #000;
+}
+
+.switchcontainer input:checked + .slider:before {
+  transform: translateX(100%);
+  box-shadow: inset 8px -4px 0px 0px #f8f8f4;
+}
+
+.togglebutton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 10vh; /* adjust this to set the height of the container */
 }
