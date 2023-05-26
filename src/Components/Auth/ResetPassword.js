@@ -36,15 +36,15 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="container">
-      <div className="card">
-        <span className="card__title">
+    <div className={classes.container}>
+      <div className={classes.card}>
+        <span className={classes.cardtitle}>
           Enter the email with which you have registered
         </span>
-        <div className="card__form">
+        <div className={classes.cardform}>
           <input placeholder="Email" type="text" required ref={emailInputRef} />
           {!isLoading && (
-            <button className="sign-up" onClick={resetHandler}>
+            <button className={classes.signup} onClick={resetHandler}>
               Send Link
             </button>
           )}

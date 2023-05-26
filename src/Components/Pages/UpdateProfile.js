@@ -8,38 +8,50 @@ const UpdateProfile = () => {
   const photoURLInputRef = useRef();
   const navigate = useNavigate();
   const bgColor = useSelector((state) => state.theme.bgColor);
-  const [displayName, setName] = useState("");
+  const [name, setName] = useState("");
   const [imageURL, setUrl] = useState("");
 
   const updateHandler = (event) => {
     event.preventDefault();
-    let name = nameInputRef.current.value;
-    let photoURL = photoURLInputRef.current.value;
+    let enteredName = nameInputRef.current.value;
+    let enteredPhotoURL = photoURLInputRef.current.value;
 
-    fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyCY-VGJzQO4PuIAWLAzUqOd4c2XvpMOQFs",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          idToken: localStorage.getItem("token"),
-          displayName: name,
-          photoUrl: photoURL,
-          returnSecureToken: true,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    ).then((res) => {
-      if (res.ok) {
-        console.log(res.json);
-        console.log("Updated Successfully");
-      } else {
-        return res.json().then((data) => {
-          alert(data.error.message);
+    if (enteredName && enteredPhotoURL) {
+      fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyCY-VGJzQO4PuIAWLAzUqOd4c2XvpMOQFs",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            idToken: localStorage.getItem("token"),
+            displayName: enteredName,
+            photoUrl: enteredPhotoURL,
+            // returnSecureToken: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+        // ).then((res) => {
+        //   if (res.ok) {
+        //     console.log(res.json);
+        //     console.log("Updated Successfully");
+        //   } else {
+        //     return res.json().then((data) => {
+        //       alert(data.error.message);
+        //     });
+        //   }
+        // });
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+          alert("Updated Successfully");
         });
-      }
-    });
+    } else {
+      alert("Please Enter Name and Photo Url");
+    }
   };
 
   useEffect(() => {
@@ -69,7 +81,7 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className={bgColor ? 'dark' : ''}>
+    <div>
       <header className={classes.header}>
         <div className={classes.leftcolumn}>
           Winners never quit, Quitters never win
@@ -83,7 +95,7 @@ const UpdateProfile = () => {
               placeholder="Full Name"
               type="text"
               required
-              defaultValue={displayName}
+              defaultValue={name}
               ref={nameInputRef}
             />
             <input

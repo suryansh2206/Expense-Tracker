@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(3, 20, 128);
+  background-color: rgba(128, 128, 128, 0.794);
   padding: 2rem;
 }
 
@@ -38,7 +38,7 @@
   padding: 0.5em 1em;
   border: transparent;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-  background: rgb(3, 20, 128);
+  background: rgba(128, 128, 128, 0.794);
   color: white;
   border-radius: 4px;
 }
@@ -47,8 +47,8 @@
   background: rgb(2, 0, 36);
   background: linear-gradient(
     90deg,
-    rgba(30, 144, 255, 1) 0%,
-    rgba(0, 212, 255, 1) 100%
+    rgba(128, 128, 128, 0.088) 0%,
+    rgba(128, 128, 128, 0.098) 100%
   );
 }
 

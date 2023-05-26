@@ -10,18 +10,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(3, 20, 128);
+  background-color: rgba(128, 128, 128, 0.116);
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
 }
 
 .expenselist li:hover {
-  background: rgb(2, 0, 36);
+  background: rgba(128, 128, 128, 0.794);
   background: linear-gradient(
     90deg,
-    rgba(30, 144, 255, 1) 0%,
-    rgba(0, 212, 255, 1) 100%
+    rgba(128, 128, 128, 0.794) 0%,
+    rgba(128, 128, 128, 0.189) 100%
   );
 }
 
@@ -52,7 +52,7 @@ h6 {
 }
 
 button {
-  background-color: #fbfcfc;
+  background-color: rgba(128, 128, 128, 0.29);
   border: 1px solid rgb(209, 213, 219);
   border-radius: 0.5rem;
   color: #111827;
@@ -79,8 +79,8 @@ button:hover {
   background: rgb(2, 0, 36);
   background: linear-gradient(
     90deg,
-    rgba(30, 144, 255, 1) 0%,
-    rgba(0, 212, 255, 1) 100%
+    rgba(128, 128, 128, 0.794) 0%,
+    rgba(128, 128, 128, 0.189) 100%
   );
 }
 

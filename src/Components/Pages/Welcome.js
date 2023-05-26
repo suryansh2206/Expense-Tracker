@@ -24,15 +24,22 @@ const Welcome = () => {
           "Content-Type": "application/json",
         },
       }
-    ).then((res) => {
-      if (res.ok) {
-        res.json().then((data) => console.log(data));
-      } else {
-        res.json().then((data) => {
-          alert(data.error.message);
-        });
-      }
-    });
+    )
+      .then((res) => {
+        if (res.ok) {
+          res.json().then((data) => console.log(data));
+        } else {
+          res.json().then((data) => {
+            alert(data.error.message);
+          });
+        }
+      })
+      .then((data) => {
+        window.alert("Email sent for verification");
+      })
+      .catch((err) => {
+        window.alert(err.message);
+      });
   };
 
   const logoutHandler = () => {

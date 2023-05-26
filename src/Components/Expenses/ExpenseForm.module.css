@@ -19,7 +19,7 @@
   width: 800px;
   flex-direction: row; /* changed from column */
   gap: 30px;
-  background: rgb(3, 20, 128);
+  background: rgba(128, 128, 128, 0.274);
   /* box-shadow: 16px 16px 32px rgb(3, 20, 128), -16px -16px 32px rgb(3, 20, 128); */
   border-radius: 8px;
 }
