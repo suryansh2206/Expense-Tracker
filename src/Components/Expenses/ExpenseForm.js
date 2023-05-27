@@ -166,11 +166,12 @@ const ExpenseForm = () => {
             />
             {/* <span>Category</span> */}
             <datalist id="category">
-              <option value="Snacks"></option>
-              <option value="Mobile Recharge"></option>
+              <option value="Food"></option>
+              <option value="Electronics"></option>
               <option value="Gym Membership and Stuff"></option>
-              <option value="Fuel"></option>
+              <option value="Vehicle"></option>
               <option value="Clothes"></option>
+              <option value="Others"></option>
             </datalist>
           </div>
 
