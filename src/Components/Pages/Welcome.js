@@ -13,7 +13,7 @@ const Welcome = () => {
   const bgColor = useSelector((state) => state.theme.bgColor);
   const verifyHandler = () => {
     fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCY-VGJzQO4PuIAWLAzUqOd4c2XvpMOQFs",
+      "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyD3e8JXD4GylIOAl_tIJafR0-TM0nEq_OE",
       {
         method: "POST",
         body: JSON.stringify({

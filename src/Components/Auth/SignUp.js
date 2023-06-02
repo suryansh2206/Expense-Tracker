@@ -1,4 +1,4 @@
-import classes from  "./SignUp.module.css";
+import classes from "./SignUp.module.css";
 import React from "react";
 import { useRef } from "react";
 // import { useDispatch } from "react-redux";
@@ -18,7 +18,7 @@ const SignUp = () => {
 
     if (enteredPassword === enteredConfirmPassword) {
       fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCY-VGJzQO4PuIAWLAzUqOd4c2XvpMOQFs",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD3e8JXD4GylIOAl_tIJafR0-TM0nEq_OE",
         {
           method: "POST",
           body: JSON.stringify({
@@ -37,6 +37,10 @@ const SignUp = () => {
             localStorage.setItem("token", data.idToken);
           });
           console.log("Sign Up Successful");
+          alert("Sign Up successful, please log in to continue");
+          emailInputRef.current.value = "";
+          passwordInputRef.current.value = "";
+          confirmPasswordInputRef.current.value = "";
         } else {
           return res.json().then((data) => {
             console.log(data);
@@ -56,7 +60,9 @@ const SignUp = () => {
       <div className={classes.formbox}>
         <form className={classes.form}>
           <span className={classes.title}>Sign up</span>
-          <span className={classes.subtitle}>Create a free account with your email.</span>
+          <span className={classes.subtitle}>
+            Create a free account with your email.
+          </span>
           <div className={classes.formcontainer}>
             <input
               type="email"
@@ -96,5 +102,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
-

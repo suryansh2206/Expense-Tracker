@@ -37,7 +37,7 @@ const ExpenseForm = () => {
     // });
     // setItems(expenseArr);
     fetch(
-      `https://react-http-a080a-default-rtdb.firebaseio.com/expensedetails/${username}.json`,
+      `https://expense-tracker-c922d-default-rtdb.firebaseio.com/expensedetails/${username}.json`,
       {
         method: "DELETE",
       }
@@ -57,7 +57,7 @@ const ExpenseForm = () => {
 
   useEffect(() => {
     fetch(
-      `https://react-http-a080a-default-rtdb.firebaseio.com/expensedetails/${username}.json`
+      `https://expense-tracker-c922d-default-rtdb.firebaseio.com/expensedetails/${username}.json`
     )
       .then((res) => {
         if (res.ok) {
@@ -100,7 +100,7 @@ const ExpenseForm = () => {
     // setItems([...items, expense]);
 
     const response = await fetch(
-      `https://react-http-a080a-default-rtdb.firebaseio.com/expensedetails/${username}.json`,
+      `https://expense-tracker-c922d-default-rtdb.firebaseio.com/expensedetails/${username}.json`,
       {
         method: "POST",
         body: JSON.stringify(expense),
